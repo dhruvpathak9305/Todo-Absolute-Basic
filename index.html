@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo absolute basic</title>
+    <script>
+      window.onload = function () {
+        console.log("pathak");
+        document.getElementById("main").onsubmit = function (e) {
+          e.preventDefault();
+          console.log("dhruv");
+          var inputDOM = document.getElementById("input");
+          var input = inputDOM.value;
+          inputDOM.value = "";
+          inputDOM.focus();
+          var li = document.createElement("li");
+          li.innerHTML = input;
+          var list = document.getElementById("list");
+          list.appendChild(li);
+
+          var doneBtn = document.createElement("input");
+          doneBtn.type = "button";
+          doneBtn.value = "Mark as done";
+          doneBtn.onclick = function (e) {
+            var self = e.target;
+            var li = self.parentNode;
+            if (li.style.textDecoration == "line-through") {
+              li.style.textDecoration = "";
+              self.value = "Mark as done";
+            } else {
+              li.style.textDecoration = "line-through";
+              self.value = "Mark as Incomplete";
+            }
+          };
+          li.appendChild(doneBtn);
+
+          var deleteBtn = document.createElement("input");
+          deleteBtn.type = "button";
+          deleteBtn.value = "delete";
+          deleteBtn.onclick = function (e) {
+            var self = e.target;
+            var li = self.parentNode;
+            li.remove();
+          };
+          li.appendChild(deleteBtn);
+        };
+      };
+    </script>
+  </head>
+
+  <body>
+    <form action="" id="main">
+      Enter any thing: <input type="text" id="input" />
+      <input type="submit" value="Add Item" />
+    </form>
+    <ul id="list"></ul>
+  </body>
+</html>
